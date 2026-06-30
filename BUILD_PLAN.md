@@ -87,6 +87,30 @@ the 5 strongest. Nothing goes live as "mine" until *I* built it.
 
 ---
 
+## CI/CD approach (how "push → live" works)
+
+We deliberately lean on **Pattern A: platform-native Git integration** — connect the
+repo once in the host's dashboard, and every `git push` auto-deploys. No pipeline
+code to maintain. We only hand-write a pipeline (**Pattern B: GitHub Actions**) where
+the host doesn't watch GitHub natively (Fly.io).
+
+```
+Pattern A (Vercel / Streamlit Cloud):  push → GitHub → host detects → redeploys   [connect once, no file]
+Pattern B (Fly.io):                    push → GitHub → GitHub Action runs deploy  [.github/workflows + token]
+```
+
+| Project | Host | Pattern | One-time setup |
+|---------|------|---------|----------------|
+| Portfolio (Next.js) | **Vercel** | A | Connect repo in Vercel → Settings → Git |
+| Chatbot / RAG / Job agent (Streamlit) | **Streamlit Community Cloud** | A | "New app" → pick repo/branch/`app.py` → set key in Secrets |
+| Voice assistant (Flask) | **Fly.io** | B | Add `.github/workflows/fly.yml` + `FLY_API_TOKEN` repo secret |
+
+Note (learned from the course): the Curious PM repos had **no** CI/CD config inside them
+— the course wired push→Fly.io centrally on their own infrastructure, so students never
+set it up. We do it ourselves, in the open, and document it in each repo's README.
+
+---
+
 ## Suggested schedule (realistic, ~evenings/weekends)
 | Week | Build | Why this order |
 |------|-------|----------------|
