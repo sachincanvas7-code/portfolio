@@ -1,7 +1,10 @@
 import Link from "next/link";
+import type { Project } from "@/data/portfolio";
 import { profile, experience, projects, skills, blogs, certifications } from "@/data/portfolio";
 
 export default function Home() {
+  const highlighted = projects.filter((p) => p.highlighted);
+  const more = projects.filter((p) => !p.highlighted);
   return (
     <main>
       {/* HERO */}
@@ -19,31 +22,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WORK */}
+      {/* WORK — HIGHLIGHTED */}
       <section id="work" className="container py-16">
-        <p className="eyebrow mb-2">Work</p>
+        <p className="eyebrow mb-2">Highlighted work</p>
         <h2 className="text-2xl sm:text-3xl font-semibold mb-3">Things I&apos;ve actually built</h2>
         <p className="text-[var(--muted)] max-w-2xl mb-10">
-          Not slide decks — working AI products. Where they&apos;re live, the demo and the code are linked.
+          Not slide decks — working AI products. Each ships with a live link, a demo video, and the code.
         </p>
         <div className="grid sm:grid-cols-2 gap-5">
-          {projects.map((p) => (
-            <Link key={p.slug} href={`/project/${p.slug}`} className="card p-6 flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs text-[var(--muted)]">{p.num}</span>
-                <StatusBadge status={p.status} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
-              <p className="text-sm text-[var(--muted)] mb-5 flex-1">{p.tagline}</p>
-              <div className="flex flex-wrap gap-2">
-                {p.tags.slice(0, 4).map((t) => (
-                  <span key={t} className="tag">{t}</span>
-                ))}
-              </div>
-            </Link>
+          {highlighted.map((p) => (
+            <ProjectCard key={p.slug} p={p} />
           ))}
         </div>
       </section>
+
+      {/* WORK — MORE */}
+      {more.length > 0 && (
+        <section className="container py-8">
+          <p className="eyebrow mb-6">More projects</p>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {more.map((p) => (
+              <ProjectCard key={p.slug} p={p} compact />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* EXPERIENCE */}
       <section id="experience" className="container py-16">
@@ -124,13 +127,34 @@ export default function Home() {
   );
 }
 
-function StatusBadge({ status }: { status: "live" | "code" | "course" }) {
-  const map = {
-    live: { label: "Live demo", color: "#3ad17e" },
-    code: { label: "Code + setup", color: "#5aa9ff" },
-    course: { label: "Built in lab", color: "#8a8a93" },
-  } as const;
-  const s = map[status];
+function ProjectCard({ p, compact = false }: { p: Project; compact?: boolean }) {
+  return (
+    <Link href={`/project/${p.slug}`} className="card p-6 flex flex-col">
+      <div className="flex items-center justify-between mb-4">
+        <span className="font-mono text-xs text-[var(--muted)]">{p.num}</span>
+        <StatusBadge status={p.status} />
+      </div>
+      <h3 className={`font-semibold mb-2 ${compact ? "text-base" : "text-lg"}`}>{p.title}</h3>
+      <p className="text-sm text-[var(--muted)] mb-5 flex-1">{p.tagline}</p>
+      <div className="flex flex-wrap gap-2">
+        {p.tags.slice(0, compact ? 3 : 4).map((t) => (
+          <span key={t} className="tag">{t}</span>
+        ))}
+      </div>
+    </Link>
+  );
+}
+
+const STATUS = {
+  self: { label: "Built & shipped by me", color: "#3ad17e" },
+  live: { label: "Live demo", color: "#3ad17e" },
+  code: { label: "Code + setup", color: "#5aa9ff" },
+  course: { label: "Built in lab", color: "#8a8a93" },
+  building: { label: "Building now", color: "#ffb84d" },
+} as const;
+
+export function StatusBadge({ status }: { status: keyof typeof STATUS }) {
+  const s = STATUS[status];
   return (
     <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider" style={{ color: s.color }}>
       <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: s.color }} />

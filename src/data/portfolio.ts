@@ -35,6 +35,8 @@ export const skills = {
   "Collaboration": ["Jira", "Confluence", "Figma", "Notion", "Slack"],
 };
 
+export type ProjectStatus = "self" | "live" | "code" | "course" | "building";
+
 export type Project = {
   slug: string;
   num: string;
@@ -45,9 +47,11 @@ export type Project = {
   build: string;
   role: string;
   outcome: string;
-  status: "live" | "code" | "course";
+  status: ProjectStatus;
+  highlighted?: boolean;
   github?: string;
-  demo?: string;
+  demo?: string; // public "try it live" link
+  videoUrl?: string; // YouTube/Loom embed URL (use the /embed/ form for YouTube)
   sourceTutorial?: string;
 };
 
@@ -86,6 +90,7 @@ export const projects: Project[] = [
     outcome:
       "Deep, hands-on understanding of vector-DB architecture, embedding strategy, and the cost/performance tradeoffs that make or break a RAG product.",
     status: "course",
+    highlighted: true,
     sourceTutorial: "Optional — Podcast Search RAG System",
   },
   {
@@ -138,6 +143,7 @@ export const projects: Project[] = [
     outcome:
       "A deployed, end-to-end agentic system — my clearest proof of understanding how real agents work, fail, and get made trustworthy.",
     status: "live",
+    highlighted: true,
     github: "https://github.com/sachincanvas7-code/autonomous-job-search-agent",
     demo: "https://26c6014-job-search-agent.fly.dev",
     sourceTutorial: "Stay Curious — AI Agents & SDKs",
@@ -157,7 +163,44 @@ export const projects: Project[] = [
     outcome:
       "A working cross-platform automation agent and hands-on grounding in MCP — the protocol that's becoming the standard for connecting AI to real tools.",
     status: "course",
+    highlighted: true,
     sourceTutorial: "Week 8 + Optional Claude Code (MCP connectors)",
+  },
+  {
+    slug: "ai-pm-brain",
+    num: "07",
+    title: "Ask My AI-PM Brain",
+    tagline: "A RAG assistant trained on my entire AI Product course — ask it anything, get answers grounded in what I actually learned.",
+    tags: ["RAG", "Pinecone", "Embeddings", "Personal"],
+    problem:
+      "I went through 15 dense AI-product tutorials. That knowledge shouldn't live in PDFs I never reopen. I wanted a searchable, conversational version of my own learning — and a project that proves I can build RAG end-to-end on real data.",
+    build:
+      "Embedding my 15 tutorials + transcripts, indexing them in a vector DB, and serving a chat UI that answers questions grounded in the source material — with citations back to the exact tutorial.",
+    role:
+      "End-to-end owner: chunking strategy for long-form transcripts, retrieval quality tuning, and the citation UX that makes answers trustworthy.",
+    outcome:
+      "A genuinely useful personal tool and the clearest possible proof that I can ship a RAG system on data that matters to me.",
+    status: "building",
+    highlighted: true,
+    sourceTutorial: "Optional — Podcast Search RAG (concepts reused)",
+  },
+  {
+    slug: "flute-guruji",
+    num: "08",
+    title: "Flute Guruji",
+    tagline: "A real-time AI teacher for Indian classical flute — listens to you play and coaches you, note by note.",
+    tags: ["Real-time Audio", "Claude API", "PyAudio", "Pitch Detection"],
+    problem:
+      "Learning Indian classical flute without a teacher is brutal — you can't tell if your swaras are in tune or your phrasing is right. I wanted an always-available guru that listens and corrects.",
+    build:
+      "Real-time audio capture and pitch detection (PyAudio + Aubio) feeding a Claude-powered guru that evaluates intonation and phrasing and responds with coaching — structured around lessons.",
+    role:
+      "My own original product: the real-time audio pipeline, the scoring/evaluation model owned by the AI guru, and the lesson-navigation UX.",
+    outcome:
+      "My most ambitious original build — real-time audio + LLM reasoning in a domain I care about personally.",
+    status: "building",
+    highlighted: true,
+    sourceTutorial: "Original project (not from the course)",
   },
 ];
 

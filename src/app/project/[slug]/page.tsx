@@ -42,16 +42,34 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <div className="flex flex-wrap gap-3 mb-12">
         {p.demo && (
           <a href={p.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            ▶ Live demo
+            ▶ Try it live
           </a>
         )}
         {p.github && (
           <a href={p.github} target="_blank" rel="noopener noreferrer" className="btn">View code on GitHub</a>
         )}
-        {!p.demo && !p.github && (
+        {p.status === "building" && !p.demo && (
+          <span className="btn cursor-default opacity-70">🚧 Building now — live link &amp; demo coming</span>
+        )}
+        {p.status === "course" && !p.demo && !p.github && (
           <span className="btn cursor-default opacity-70">Built in the AI Build Lab — walkthrough on request</span>
         )}
       </div>
+
+      {p.videoUrl && (
+        <div className="mb-12">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-3">Demo</h2>
+          <div className="relative w-full overflow-hidden rounded-xl border border-[var(--border)]" style={{ paddingTop: "56.25%" }}>
+            <iframe
+              className="absolute inset-0 h-full w-full"
+              src={p.videoUrl}
+              title={`${p.title} demo`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
 
       <div className="space-y-10">
         {sections.map((s) => (
