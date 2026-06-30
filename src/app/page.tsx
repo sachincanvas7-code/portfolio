@@ -1,65 +1,140 @@
-import Image from "next/image";
+import Link from "next/link";
+import { profile, experience, projects, skills, blogs, certifications } from "@/data/portfolio";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      {/* HERO */}
+      <section className="container pt-20 pb-24 sm:pt-28">
+        <p className="eyebrow mb-4">{profile.location}</p>
+        <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight mb-3">{profile.name}</h1>
+        <p className="font-mono text-sm uppercase tracking-widest text-[var(--accent)] mb-8">
+          {profile.headline}
+        </p>
+        <p className="max-w-2xl text-lg text-[#c9c9d1] mb-10">{profile.bio}</p>
+        <div className="flex flex-wrap gap-3">
+          <a href={`mailto:${profile.email}`} className="btn btn-primary">Let&apos;s chat</a>
+          <a href={profile.resume} className="btn">Resume</a>
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" className="btn">GitHub</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* WORK */}
+      <section id="work" className="container py-16">
+        <p className="eyebrow mb-2">Work</p>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-3">Things I&apos;ve actually built</h2>
+        <p className="text-[var(--muted)] max-w-2xl mb-10">
+          Not slide decks — working AI products. Where they&apos;re live, the demo and the code are linked.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {projects.map((p) => (
+            <Link key={p.slug} href={`/project/${p.slug}`} className="card p-6 flex flex-col">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-xs text-[var(--muted)]">{p.num}</span>
+                <StatusBadge status={p.status} />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
+              <p className="text-sm text-[var(--muted)] mb-5 flex-1">{p.tagline}</p>
+              <div className="flex flex-wrap gap-2">
+                {p.tags.slice(0, 4).map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
+              </div>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section id="experience" className="container py-16">
+        <p className="eyebrow mb-2">Experience</p>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-10 max-w-2xl">
+          From data and growth into product — edtech experiments to legal and risk platforms.
+        </h2>
+        <div className="space-y-px">
+          {experience.map((e) => (
+            <div key={e.period} className="grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8 border-t border-[var(--border)] py-6">
+              <span className="font-mono text-xs text-[var(--muted)] pt-1">{e.period}</span>
+              <div>
+                <h3 className="font-semibold">{e.role} <span className="text-[var(--muted)] font-normal">· {e.company}</span></h3>
+                {e.points.length > 0 && (
+                  <ul className="mt-3 space-y-2 text-sm text-[#c9c9d1]">
+                    {e.points.map((pt, i) => (
+                      <li key={i} className="flex gap-2"><span className="text-[var(--accent)]">→</span>{pt}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <blockquote className="mt-10 border-l-2 border-[var(--accent)] pl-5 text-lg italic text-[#c9c9d1]">
+          &ldquo;{profile.tagline}&rdquo;
+        </blockquote>
+      </section>
+
+      {/* SKILLS */}
+      <section className="container py-16">
+        <p className="eyebrow mb-2">Stack</p>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-10">How I run discovery, ship, and stay close to the product</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {Object.entries(skills).map(([group, items]) => (
+            <div key={group} className="card p-5">
+              <h3 className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-4">{group}</h3>
+              <ul className="space-y-2 text-sm text-[#c9c9d1]">
+                {items.map((s) => <li key={s}>{s}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WRITING */}
+      <section className="container py-16">
+        <p className="eyebrow mb-2">Thoughts & Ideas</p>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-10 max-w-2xl">
+          Notes on discovery-driven product and shipping things that make a user&apos;s Tuesday easier.
+        </h2>
+        <div className="space-y-px">
+          {blogs.map((b) => (
+            <Link key={b.slug} href={`/blogs/${b.slug}`} className="group grid sm:grid-cols-[1fr_auto] gap-2 border-t border-[var(--border)] py-6">
+              <div>
+                <h3 className="font-medium group-hover:text-[var(--accent)] transition-colors">{b.title}</h3>
+                <p className="text-sm text-[var(--muted)] mt-1 max-w-2xl">{b.excerpt}</p>
+              </div>
+              <span className="font-mono text-xs text-[var(--muted)] pt-1">{b.readingTime}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS */}
+      <section className="container py-16">
+        <p className="eyebrow mb-2">Certifications & Education</p>
+        <div className="grid sm:grid-cols-2 gap-5 mt-6">
+          {certifications.map((c) => (
+            <div key={c.title} className="card p-6">
+              <h3 className="font-semibold">{c.title}</h3>
+              <p className="text-sm text-[var(--muted)] mt-1">{c.issuer} · {c.year}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function StatusBadge({ status }: { status: "live" | "code" | "course" }) {
+  const map = {
+    live: { label: "Live demo", color: "#3ad17e" },
+    code: { label: "Code + setup", color: "#5aa9ff" },
+    course: { label: "Built in lab", color: "#8a8a93" },
+  } as const;
+  const s = map[status];
+  return (
+    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider" style={{ color: s.color }}>
+      <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: s.color }} />
+      {s.label}
+    </span>
   );
 }
