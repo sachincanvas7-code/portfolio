@@ -67,7 +67,7 @@ export const projects: Project[] = [
     outcome:
       "A working, deployed chatbot and a concrete mental model of how conversational-AI capabilities stack — the kind of fluency that lets me scope AI features without hand-waving.",
     status: "live",
-    github: "https://github.com/sachincanvas7-code/26c6014_chatbot-starter",
+    github: "https://github.com/sachincanvas7-code/ai-chatbot-platform",
     demo: "https://26c6014-chatbot-starter.fly.dev",
     sourceTutorial: "Week 4 — APIs for AI",
   },
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     outcome:
       "A working voice-assistant MVP plus practical fluency in conversational-AI architecture and webhook integrations. Repo includes the full Twilio + ElevenLabs setup walkthrough.",
     status: "code",
-    github: "https://github.com/sachincanvas7-code/26c6014_voice-assistant",
+    github: "https://github.com/sachincanvas7-code/voice-assistant-persistent-memory",
     sourceTutorial: "Week 7 — AI Limitations & Advanced Building",
   },
   {
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     outcome:
       "A deployed, end-to-end agentic system — my clearest proof of understanding how real agents work, fail, and get made trustworthy.",
     status: "live",
-    github: "https://github.com/sachincanvas7-code/26C6014_job-search-agent",
+    github: "https://github.com/sachincanvas7-code/autonomous-job-search-agent",
     demo: "https://26c6014-job-search-agent.fly.dev",
     sourceTutorial: "Stay Curious — AI Agents & SDKs",
   },
