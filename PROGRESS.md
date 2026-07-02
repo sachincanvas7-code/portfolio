@@ -19,7 +19,25 @@ A living summary of everything done. Newest session at top. Update at the end of
 | Exposed API keys removed from repos | ✅ Done (⚠️ tell Curious PM to rotate) |
 | GitHub → Vercel auto-deploy | ⚠️ Needs Sachin to connect GitHub in Vercel dashboard (one-time) |
 | Custom domain | ⬜ Not started |
-| **Build the projects myself** | ⬜ Not started — next: Project #1 (Chatbot) |
+| **Build the projects myself** | 🟡 In progress — Project #1 (Chatbot → shipped as RoastMyPM) done; case study updated on site; demo video still pending |
+
+---
+
+## Session 2 — 2026-07-03
+
+### What we did
+1. **Discovered Project #1 was already built** in a separate session (`Work/ai-projects/ai-chatbot-platform/`) — you built **RoastMyPM**, a brutally-honest PM résumé coach, instead of the tutorial's generic chatbot.
+   - Stack: Streamlit + Groq (`llama-3.3-70b-versatile`) + conversation memory (`st.session_state`) + tool calling (`get_strong_examples`) + SQLite DB of 20 curated PM bullet examples.
+   - Live: https://ai-chatbot-platform-95j4hrvu7cowqhuebiag4g.streamlit.app/
+   - Git history + `LEARNINGS.md` confirm step-by-step authorship (static UI → real LLM → memory → tool+DB).
+2. **Marked Project #1 done** in `BUILD_PLAN.md`.
+3. **Rewrote the stale case study** in `src/data/portfolio.ts` (`chatbot-starter` entry) — it previously described a generic "weather/web search" tool-calling demo with a dead Fly.io link. Updated to accurately describe RoastMyPM (résumé roasting persona, real tool + DB grounding) and fixed the live demo link to the actual Streamlit Cloud URL.
+
+### Open / next
+- [ ] Record the demo video for RoastMyPM (60–120s: problem → live demo → one learning) and add `videoUrl` to its portfolio entry.
+- [ ] **Reminder (standing request):** the "Ask anything about Sachin" search bar/chatbot is still not built — parked behind the project build queue.
+- [ ] Sachin: connect GitHub in Vercel for auto-deploy (one-time browser step) — still open from Session 1.
+- [ ] Next build: Project #2/#3 — Podcast RAG → Ask My AI-PM Brain (RAG once, apply twice, two highlights).
 
 ---
 

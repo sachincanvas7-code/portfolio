@@ -59,20 +59,20 @@ export const projects: Project[] = [
   {
     slug: "chatbot-starter",
     num: "01",
-    title: "Modular AI Chatbot Platform",
-    tagline: "From a one-line prompt-responder to a tool-using, database-connected assistant — one capability at a time.",
-    tags: ["OpenAI", "Streamlit", "Python", "Tool Calling"],
+    title: "RoastMyPM — the Brutally Honest PM Résumé Coach",
+    tagline: "Paste a vague résumé bullet, get a sharp critique and a rewrite grounded in real strong/weak examples — not a hallucination.",
+    tags: ["Groq (Llama 3.3)", "Streamlit", "Python", "Tool Calling", "SQLite"],
     problem:
-      "Conversational AI looks simple in a demo and gets hard fast: it forgets context, can't act on the world, and can't reach your data. I wanted to feel exactly where each of those walls is — and what it takes to get past them.",
+      "Tutorial chatbots are generic and forgettable. I wanted something I'd actually use — and that would force me to feel where conversational AI gets hard: it forgets context, can't act on the world, and can't ground itself in real data instead of guessing.",
     build:
-      "I built a progression of chatbots, each adding one real capability: basic OpenAI chat → conversation memory → tool/function calling (weather, web search) → an AI personality layer → live database connectivity for user search. Same Streamlit frontend throughout; the intelligence all lives in the backend.",
+      "I built RoastMyPM step by step, not by copying the tutorial's generic assistant: a static UI first (prove the UI→backend loop), then a real Groq API call with a PM-hiring-manager system prompt, then conversation memory via st.session_state so I could ask it to 'roast it harder', then a real tool — get_strong_examples(dimension) — that queries a SQLite DB of 20 curated PM bullet examples so the rewrite is grounded, not invented.",
     role:
-      "I made the engineering tradeoffs a PM has to understand to scope an AI roadmap: when memory is worth the token cost, when to add a tool vs. prompt around it, and how multi-tool orchestration changes reliability.",
+      "I wrote and committed every line myself, one capability at a time, and kept a build journal of every concept and bug. That's where the PM-relevant judgment lives: when memory is worth the token cost, when a tool beats prompting around it, and how to tell a real 'tool' apart from backend logic that just looks like one.",
     outcome:
-      "A working, deployed chatbot and a concrete mental model of how conversational-AI capabilities stack — the kind of fluency that lets me scope AI features without hand-waving.",
+      "A live, public tool a stranger can use, plus a concrete mental model of how conversational-AI capabilities stack — statelessness, memory-as-history-array, system prompt vs. tool call — the fluency that lets me scope AI features without hand-waving.",
     status: "live",
     github: "https://github.com/sachincanvas7-code/ai-chatbot-platform",
-    demo: "https://26c6014-chatbot-starter.fly.dev",
+    demo: "https://ai-chatbot-platform-95j4hrvu7cowqhuebiag4g.streamlit.app/",
     sourceTutorial: "Week 4 — APIs for AI",
   },
   {

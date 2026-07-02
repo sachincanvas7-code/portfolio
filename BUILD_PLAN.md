@@ -27,7 +27,7 @@ the 5 strongest. Nothing goes live as "mine" until *I* built it.
 ## Full build list (highlighted = ⭐) — in LEARNING order
 | # | Project | Learn from (PDF/.md) | Difficulty | Highlight? |
 |---|---------|----------------------|-----------|-----------|
-| 1 | Modular AI Chatbot | Week 4 — APIs for AI | ★☆☆ | list |
+| 1 | Modular AI Chatbot ✅ (shipped as **RoastMyPM**) | Week 4 — APIs for AI | ★☆☆ | list |
 | 2 | Podcast RAG System | Optional — Podcast Search RAG | ★★☆ | ⭐ |
 | 3 | Ask My AI-PM Brain (RAG) | Optional Podcast RAG (reuse) | ★★☆ | ⭐ |
 | 4 | Autonomous Job Search Agent | Stay Curious — Agents & SDKs | ★★★ | ⭐ |
@@ -114,7 +114,7 @@ set it up. We do it ourselves, in the open, and document it in each repo's READM
 ## Suggested schedule (realistic, ~evenings/weekends)
 | Week | Build | Why this order |
 |------|-------|----------------|
-| 1 | #1 Chatbot | Foundations: API, memory, tools. Confidence win. |
+| 1 | #1 Chatbot ✅ Done | Foundations: API, memory, tools. Confidence win. |
 | 2 | #2 Podcast RAG → #3 Ask My AI-PM Brain | RAG once, apply twice. Two highlights, fast. |
 | 3 | #4 Job Search Agent | Agents — first highlight with a live demo. |
 | 4 | #5 MCP Workspace Agent | MCP — hot, differentiating. |
