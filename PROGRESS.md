@@ -17,7 +17,7 @@ A living summary of everything done. Newest session at top. Update at the end of
 | Per-project video embed + "Try it live" support | ✅ Built (fields empty until each ships) |
 | 3 project repos reset to clean starters | ✅ Done |
 | Exposed API keys removed from repos | ✅ Done (⚠️ tell Curious PM to rotate) |
-| GitHub → Vercel auto-deploy | ⚠️ Needs Sachin to connect GitHub in Vercel dashboard (one-time) |
+| GitHub → Vercel auto-deploy | ✅ Done — Sachin connected the repo in Vercel Settings → Git (2026-07-03) |
 | Custom domain | ⬜ Not started |
 | **Build the projects myself** | 🟡 In progress — Project #1 (Chatbot → shipped as RoastMyPM) done; case study updated on site; demo video still pending |
 
